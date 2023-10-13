@@ -115,35 +115,38 @@
         </form>
 
         <script>
+          clickSubmitButton()
 
-          let submitButton = document.querySelector("button");
+          function clickSubmitButton() {
+            let submitButton = document.querySelector("button");
 
-          submitButton.addEventListener("click", (event) => {
-            event.preventDefault()
-            let commentList = document.getElementById("comment-list")
+            submitButton.addEventListener("click", (event) => {
+              event.preventDefault()
+              let commentList = document.getElementById("comment-list")
 
-            let message = document.getElementById("message").value;
-            let firstName = document.getElementById("first-name").value
-            let lastName = document.getElementById("last-name").value
-            
+              let message = document.getElementById("message").value;
+              let firstName = document.getElementById("first-name").value
+              let lastName = document.getElementById("last-name").value
 
-            let h3Class = document.querySelector("h3").className
-            console.log(h3Class)
+              let name = document.createElement("h3")
+              let messageDiv = document.createElement("div")
 
-            let name = document.createElement("h3")
-            name.className= h3Class
-            let messageDiv = document.createElement("div")
 
-            let nameContent = document.createTextNode(firstName + " " + lastName)
-            name.appendChild(nameContent)
+              if (firstName === "" || lastName === "" || message === "") {
+                let errorMessage = document.getElementById("error-message")
+                errorMessage.style.removeProperty("display")
+              } else {
+                let nameContent = document.createTextNode(firstName + " " + lastName)
+                name.appendChild(nameContent)
 
-            let messageContent = document.createTextNode(message)
-            messageDiv.appendChild(messageContent)
+                let messageContent = document.createTextNode(message)
+                messageDiv.appendChild(messageContent)
 
-            commentList.appendChild(name)
-            commentList.appendChild(messageDiv)
-          });
-
+                commentList.appendChild(name)
+                commentList.appendChild(messageDiv)
+              }
+            });
+          }
         </script>
       </div>
     </div>
