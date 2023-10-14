@@ -115,7 +115,7 @@
         </form>
 
         <script>
-          clickSubmitButton()
+          clickSubmitButton();
 
           //Fonction pour poster le message
           function clickSubmitButton() {
@@ -137,16 +137,8 @@
               let div3 = document.createElement("div");
               let messageP = document.createElement("p");
 
-              // <div class="flex space-x-4 text-sm text-gray-500">
-              // <div class="flex-1 py-10 border-t border-gray-200">
-              //   <h3 class="font-medium text-gray-900">Mark Edwards</h3>
-              //   <div class="prose prose-sm mt-4 max-w-none text-gray-500">
-              //     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae accusantium quae doloribus.
-              //       Nobis ipsam libero asperiores a velit ab nemo facere molestias quisquam. Libero, repudiandae
-              //       dignissimos. Doloribus hic placeat soluta?</p>
-
               // Récupération des styles
-              let div1class = commentList.querySelector(".flex")
+              let div1class = commentList.querySelector(".flex");
               let div1Style = div1class.className;
               let div2class = document.querySelector(".border-t");
               let div2Style = div2class.className;
