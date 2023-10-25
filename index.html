@@ -113,73 +113,95 @@
 
           </div>
         </form>
-
-        <script>
-          clickSubmitButton();
-
-          //Fonction pour poster le message
-          function clickSubmitButton() {
-            let submitButton = document.querySelector("button");
-
-            submitButton.addEventListener("click", (event) => {
-              event.preventDefault();
-              let commentList = document.getElementById("comment-list");
-
-              // Récupération des valeurs des inputs
-              let message = document.getElementById("message").value;
-              let firstName = document.getElementById("first-name").value;
-              let lastName = document.getElementById("last-name").value;
-
-              // Création des div contenant le message à afficher
-              let div1 = document.createElement("div");
-              let div2 = document.createElement("div");
-              let name = document.createElement("h3");
-              let div3 = document.createElement("div");
-              let messageP = document.createElement("p");
-
-              // Récupération des styles
-              let div1class = commentList.querySelector(".flex");
-              let div1Style = div1class.className;
-              let div2class = document.querySelector(".border-t");
-              let div2Style = div2class.className;
-              let elemh3 = div2class.firstChild.nextSibling;
-              let nameStyle = elemh3.className;
-              let div3class = document.querySelector(".prose");
-              let div3Style = div3class.className;
-
-              // Application des styles aux nouveaux éléments
-              div1.className = div1Style;
-              div2.className = div2Style;
-              name.className = nameStyle;
-              div3.className = div3Style
-
-              // affichage du message d'erreur si un des champs est vide
-              if (firstName === "" || lastName === "" || message === "") {
-                let errorMessage = document.getElementById("error-message");
-                errorMessage.style.removeProperty("display");
-              } else {
-                let nameContent = document.createTextNode(firstName + " " + lastName);
-                name.appendChild(nameContent);
-
-                let messageContent = document.createTextNode(message);
-                messageP.appendChild(messageContent);
-
-                div3.appendChild(messageP);
-                div2.appendChild(name);
-                div2.appendChild(div3);
-                div1.appendChild(div2)
-                commentList.appendChild(div1);
-
-                let form = document.querySelector("form");
-                form.reset();
-              }
-            });
-          }
-        </script>
       </div>
     </div>
   </div>
   </div>
+  <script>
+    clickSubmitButton();
+
+    //Fonction pour poster le message
+    function clickSubmitButton() {
+      let submitButton = document.querySelector("button");
+      submitButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        
+        // Récupération des valeurs des inputs
+        let message = document.getElementById("message").value;
+        let firstName = document.getElementById("first-name").value;
+        let lastName = document.getElementById("last-name").value;
+
+        //Vérification des champs, affichage du message d'erreur si champ vide
+        if (firstName === "" || lastName === "" || message === "") {
+          showError()
+        } else {
+          addComment()
+          hideError()
+          clearForm()
+        };
+
+        function showError() {
+          let errorMessage = document.getElementById("error-message");
+          errorMessage.style.removeProperty("display");
+        }
+
+        function hideError() {
+          let errorMessage = document.getElementById("error-message");
+          errorMessage.style.setProperty("display");
+        }
+
+        function addComment() {
+          let commentList = document.getElementById("comment-list");
+
+          // Création des div contenant le message à afficher
+          let div1 = document.createElement("div");
+          let div2 = document.createElement("div");
+          let name = document.createElement("h3");
+          let div3 = document.createElement("div");
+          let messageP = document.createElement("p");
+
+          // Récupération des styles
+          let div1class = commentList.querySelector(".flex");
+          let div1Style = div1class.className;
+          let div2class = document.querySelector(".border-t");
+          let div2Style = div2class.className;
+          let elemh3 = div2class.firstChild.nextSibling;
+          let nameStyle = elemh3.className;
+          let div3class = document.querySelector(".prose");
+          let div3Style = div3class.className;
+
+          // Application des styles aux nouveaux éléments
+          div1.className = div1Style;
+          div2.className = div2Style;
+          name.className = nameStyle;
+          div3.className = div3Style
+          
+
+          
+          let nameContent = document.createTextNode(firstName + " " + lastName);
+          let messageContent = document.createTextNode(message);
+          
+          messageP.appendChild(messageContent);
+          div3.appendChild(messageP);
+          name.appendChild(nameContent);
+          div2.appendChild(name);
+          div2.appendChild(div3);
+          div1.appendChild(div2)
+          commentList.appendChild(div1);
+        }
+
+        function clearForm() {
+          let form = document.querySelector("form");
+          form.reset();
+        }
+
+
+      })
+
+
+    }
+
+  </script>
 </body>
 
 </html>
