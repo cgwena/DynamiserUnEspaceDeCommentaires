@@ -136,8 +136,8 @@
           showError()
         } else {
           addComment()
-          hideError()
           clearForm()
+          hideError()
         };
 
         function showError() {
@@ -147,7 +147,7 @@
 
         function hideError() {
           let errorMessage = document.getElementById("error-message");
-          errorMessage.style.setProperty("display");
+          errorMessage.style.setProperty("display","none");
         }
 
         function addComment() {
@@ -176,8 +176,6 @@
           name.className = nameStyle;
           div3.className = div3Style
           
-
-          
           let nameContent = document.createTextNode(firstName + " " + lastName);
           let messageContent = document.createTextNode(message);
           
@@ -194,13 +192,8 @@
           let form = document.querySelector("form");
           form.reset();
         }
-
-
       })
-
-
     }
-
   </script>
 </body>
 
